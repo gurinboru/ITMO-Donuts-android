@@ -1,117 +1,84 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer} from '@react-navigation/native';
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import Preloader from './src/components/Preloader/Preloader';
+
+import {createNavigationContainerRef} from '@react-navigation/native';
+import Registration from './src/components/Registration/Registration';
+
+export const navigationRef = createNavigationContainerRef();
+
+export function navigate(name, params) {
+  if (navigationRef.isReady()) {
+    navigationRef.navigate(name, params);
+  }
+}
+const theme = {
+  colors: {
+    lightest1: '#FFE6B1',
+    lightest2: '#FED06E',
+    light1: '#FFA048',
+    light2: '#DA802E',
+    accent1: '#ED4A71',
+    accent2: '#FF6187',
+    accent3: '#FF7D9C',
+    darkest1: '#0B304B',
+    darkest2: '#11466C',
+    darkest3: '#5ED9EA',
+  },
+  typography: {
+    h1: {
+      fontSize: 40,
+      fontWeight: '700',
+    },
+    h2: {
+      fontSize: 36,
+      fontWeight: '700',
+    },
+    h3: {
+      fontSize: 32,
+      fontWeight: '700',
+    },
+  },
+};
+const App = props => {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
+    <NavigationContainer
+      ref={navigationRef}
+      theme={theme}
+      initialRouteName="Preloader">
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#000',
           },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
           },
-        ]}>
-        {children}
-      </Text>
-    </View>
+        }}>
+        <Stack.Screen
+          name="Preloader"
+          component={Preloader}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Registration"
+          component={Registration}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
