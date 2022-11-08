@@ -8,6 +8,7 @@ import Preloader from './src/components/Preloader/Preloader';
 
 import {createNavigationContainerRef} from '@react-navigation/native';
 import Registration from './src/components/Registration/Registration';
+import {NativeBaseProvider} from 'native-base';
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -47,37 +48,39 @@ const theme = {
 const App = props => {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      theme={theme}
-      initialRouteName="Preloader">
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#000',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}>
-        <Stack.Screen
-          name="Preloader"
-          component={Preloader}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Registration"
-          component={Registration}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <NativeBaseProvider>
+      <NavigationContainer
+        ref={navigationRef}
+        theme={theme}
+        initialRouteName="Preloader">
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: '#000',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}>
+          <Stack.Screen
+            name="Preloader"
+            component={Preloader}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Registration"
+            component={Registration}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </NativeBaseProvider>
   );
 };
 

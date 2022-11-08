@@ -1,17 +1,14 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {API} from '../../api/api';
-import {useTheme} from '@react-navigation/native';
+import {Dimensions, StyleSheet, View} from 'react-native';
+import React, {useEffect} from 'react';
+
 import Loader from '../../assets/svg/loader/Loader.svg';
+import {API} from '../../api/api';
 
 const {width, height} = Dimensions.get('window');
 const Preloader = ({navigation}) => {
-  const [isLoad, setIsLoad] = useState(true);
-
   const getFromAPI = () => {
     API.test().then(res => {
       console.log('Application is loaded', navigation);
-      setIsLoad(false);
       navigation.navigate('Registration');
     });
   };
