@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -9,6 +9,7 @@ import Preloader from './src/components/Preloader/Preloader';
 import {createNavigationContainerRef} from '@react-navigation/native';
 import Registration from './src/components/Registration/Registration';
 import {NativeBaseProvider} from 'native-base';
+import SplashScreen from 'react-native-splash-screen';
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -46,6 +47,10 @@ const theme = {
   },
 };
 const App = props => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   const Stack = createNativeStackNavigator();
   return (
     <NativeBaseProvider>
