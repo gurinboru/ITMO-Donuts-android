@@ -8,6 +8,7 @@ import Preloader from './src/components/Preloader/Preloader';
 
 import {createNavigationContainerRef} from '@react-navigation/native';
 import Registration from './src/components/Registration/Registration';
+import Authorization from './src/components/Authorization/Authorization';
 import {NativeBaseProvider} from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -72,6 +73,13 @@ const App = props => {
           <Stack.Screen
             name="Preloader"
             component={Preloader}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Authorization"
+            component={Authorization}
             options={{
               headerShown: false,
             }}
