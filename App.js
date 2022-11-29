@@ -11,6 +11,7 @@ import Registration from './src/components/Registration/Registration';
 import Authorization from './src/components/Authorization/Authorization';
 import {NativeBaseProvider} from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
+import MainScreen from './src/components/MainScreen/MainScreen';
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -73,6 +74,13 @@ const App = props => {
           <Stack.Screen
             name="Preloader"
             component={Preloader}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="MainScreen"
+            component={MainScreen}
             options={{
               headerShown: false,
             }}
