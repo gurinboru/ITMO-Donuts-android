@@ -9,7 +9,7 @@ const Preloader = ({navigation}) => {
   const getFromAPI = () => {
     API.test().then(res => {
       console.log('Application is loaded', navigation);
-      navigation.navigate('Authorization');
+      navigation.navigate('MainScreen');
     });
   };
   useEffect(() => {

@@ -1,38 +1,37 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { Component } from 'react';
 import {Icon, Input, Pressable} from 'native-base';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faEye} from '@fortawesome/free-solid-svg-icons/faEye';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
 import {faBars} from '@fortawesome/free-solid-svg-icons/faBars';
 const MainHeader = ({navigation, onSearchTextChange}) => {
   return (
     <View style={styles.container}>
       <Pressable>
+        <View style={styles.Bars}>
         <Icon
-          as={<FontAwesomeIcon icon={faBars} />}
-          size={5}
-          mr="2"
-          color="muted.400"
+          as={<FontAwesomeIcon icon={faBars} color={'#DA802E'} />}
         />
+        </View>
       </Pressable>
+      <View style={styles.containerInput}>
       <Input
         w={{
-          base: '75%',
-          md: '25%',
+          base: '100%',
+          md: '100%',
         }}
         InputRightElement={
           <Pressable onPress={() => console.log('press')}>
-            <Icon
-              as={<FontAwesomeIcon icon={faEye} />}
-              size={5}
-              mr="2"
-              color="muted.400"
+            <View style={styles.MagnifyingGlass}>
+            <Icon as={<FontAwesomeIcon icon={faMagnifyingGlass} color={'#FFA048'} />} 
             />
+            </View>
           </Pressable>
         }
         onChange={onSearchTextChange}
-        placeholder="Password"
-      />
+        placeholder="Search donuts"
+        />
+      </View>
     </View>
   );
 };
@@ -42,8 +41,24 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    maxWidth: '90%',
+    justifyContent: 'space-around',
+    maxWidth: '100%',
+    backgroundColor: '#FED06E',
+  },
+  MagnifyingGlass: {
+    padding : 10,
+  },
+  containerInput: {
+    width: '90%',
+    height: '60%',
+    backgroundColor: '#FFE6B1',
+    borderRadius: 6.5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    borderWidth: 1,
+    borderColor: '#FFA048',
+    
   },
 });
 export default MainHeader;
