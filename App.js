@@ -12,7 +12,10 @@ import Authorization from './src/components/Authorization/Authorization';
 import {NativeBaseProvider} from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import MainScreen from './src/components/MainScreen/MainScreen';
-
+import Settings from './src/components/Settings/Settings';
+import SettingsEdit from './src/components/SettingsEdit/SettingsEdit';
+import SettingsConfirm from './src/components/SettingsConfirm/SettingsConfirm';
+import DonutScreen from './src/components/DonutScreen/DonutScreen';
 export const navigationRef = createNavigationContainerRef();
 
 export function navigate(name, params) {
@@ -95,6 +98,34 @@ const App = props => {
           <Stack.Screen
             name="Registration"
             component={Registration}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SettingsEdit"
+            component={SettingsEdit}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SettingsConfirm"
+            component={SettingsConfirm}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="DonutScreen"
+            component={DonutScreen}
             options={{
               headerShown: false,
             }}
