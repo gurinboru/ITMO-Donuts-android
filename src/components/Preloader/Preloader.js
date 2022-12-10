@@ -13,6 +13,7 @@ const Preloader = ({navigation}) => {
     });
   };
   useEffect(() => {
+
     getFromAPI();
   }, []);
 
